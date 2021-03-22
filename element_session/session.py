@@ -45,15 +45,6 @@ class SessionDirectory(dj.Manual):
 @schema
 class Project(dj.Manual):
     definition = """
-    -> Session
-    ---
-    session_dir: varchar(256)       # Path to the data directory for a particular session
-    """
-
-
-@schema
-class Project(dj.Manual):
-    definition = """
     project_name:       varchar(128)
     ---
     project_desc='':    varchar(1000) 
