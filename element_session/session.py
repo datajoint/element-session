@@ -15,6 +15,7 @@ def activate(schema_name, create_schema=True, create_tables=True, linking_module
          required dependencies to activate the `session` element:
              Upstream tables:
                 + Subject: the subject for which a particular experimental session is associated with
+                + Project: the project for which experimental sessions are associated with
     """
     if isinstance(linking_module, str):
         linking_module = importlib.import_module(linking_module)
@@ -40,28 +41,6 @@ class SessionDirectory(dj.Manual):
     ---
     session_dir: varchar(256)       # Path to the data directory for a particular session
     """
-
-
-@schema
-class Project(dj.Manual):
-    definition = """
-    project_name:       varchar(128)
-    ---
-    project_desc='':    varchar(1000) 
-    """
-
-    class Keyword(dj.Part):
-        definition = """
-        -> master
-        keyword: varchar(32)
-        """
-
-    class Publication(dj.Part):
-        definition = """
-        -> master
-        ---
-        publication:     varchar(256)  # e.g. publication citation, link or DOI    
-        """
 
 
 @schema
