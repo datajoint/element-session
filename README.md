@@ -1,4 +1,4 @@
-# DataJoint Element - Animal
+# DataJoint Element - Session
 
 DataJoint element for session management - U24 effort
 
@@ -10,8 +10,8 @@ DataJoint element for session management - U24 effort
 
 ## Element usage
 
-+ See the [workflow-imaging](https://github.com/datajoint/workflow-imaging)
- and [workflow-ephys](https://github.com/datajoint/workflow-ephys) repositories for example usages of `element-session`.
++ See the [workflow-calcium-imaging](https://github.com/datajoint/workflow-calcium-imaging)
+ and [workflow-array-ephys](https://github.com/datajoint/workflow-array-ephys) repositories for example usages of `element-session`.
 
 + See the [datajoint-elements](https://github.com/datajoint/datajoint-elements) repository for a detailed description of the DataJoint elements and workflows.
 
