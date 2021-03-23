@@ -4,7 +4,7 @@ from os import path
 here = path.abspath(path.dirname(__file__))
 
 long_description = """"
-DataJoint Elements for Session Management
+DataJoint Element for Session Management
 """
 
 with open(path.join(here, 'requirements.txt')) as f:
