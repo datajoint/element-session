@@ -1,1 +1,1 @@
-datajoint>=0.13.dev7
+datajoint>=0.13.0
