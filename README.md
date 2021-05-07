@@ -10,6 +10,18 @@ DataJoint element for session management - U24 effort
 
 See [Background](Background.md) for the background information and development timeline.
 
+
+## Installation
+```
+pip install element-session
+```
+
+If you already have an older version of ***element-session*** installed using `pip`, upgrade with
+```
+pip install --upgrade element-session
+```
+
+
 ## Element usage
 
 + See the [workflow-calcium-imaging](https://github.com/datajoint/workflow-calcium-imaging)
