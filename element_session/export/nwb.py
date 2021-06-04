@@ -11,8 +11,7 @@ def session_to_nwb(session_key):
 
     session_identifier = {}
     for k, v in session_key.items():
-        if isinstance(v, datetime):
-            session_identifier[k] = v.strftime('%Y%m%d_%H%M%S')
+        session_identifier[k] = v.strftime('%Y%m%d_%H%M%S') if isinstance(v, datetime) else v
 
     session_info = (session.Session & session_key).join(session.SessionNote, left=True).fetch1()
 
