@@ -24,9 +24,10 @@ def session_to_nwb(session_key):
                    session_description=session_info['session_note'] if session_info['session_note'] else '',
                    session_start_time=session_info['session_datetime'],
                    file_create_date=datetime.now(tzlocal()),
-                   experimenter=list(experimenters),
-                   data_collection='',
-                   institution='',
-                   experiment_description='',
-                   related_publications='',
-                   keywords=[])
+                   experimenter=list(experimenters)
+                   # data_collection='', # moved to elem-lab
+                   # institution='',
+                   # experiment_description='',
+                   # related_publications='',
+                   # keywords=[]
+                   )
