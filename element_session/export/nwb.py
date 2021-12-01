@@ -31,39 +31,7 @@ def session_to_nwb(session_key,lab_key=None,project_key=None,protocol_key=None):
       identifier='_'.join(session_identifier.values()),
       session_description=session_info['session_note'] if session_info['session_note'] else '',
       session_start_time=session_info['session_datetime'],
+      source_script_file_name='DataJoint element-session/export/nwb.py',
       # experimenter=list(experimenters)
-
-      ## Lab info
-      ## Broz: How can I limit to only items that exist, avoiding blank entries?
-      institution=(lab_info['institution']
-            if 'institution' in lab_info else ''),
-      lab=(lab_info['lab_name']
-            if 'lab_name' in lab_info else ''),
-      experiment_description=(lab_info['project_description']
-            if 'project_description' in lab_info else ''),
-      keywords=(lab_info['proj_keyw'] # list
-            if 'proj_keyw' in lab_info else []),
-      notes=(lab_info['protocol_description']
-            if 'protocol_description' in lab_info else ''),
-      pharmacology=(lab_info['pharmacology']
-            if 'pharmacology' in lab_info else ''),
-      related_publications=(lab_info['proj_pubs'] # list
-            if 'proj_pubs' in lab_info else []),
-      slices=(lab_info['slices']
-            if 'slices' in lab_info else ''),
-      source_script=(lab_info['repositoryurl']
-            if 'repositoryurl' in lab_info else ''),
-      surgery=(lab_info['surgery']
-            if 'surgery' in lab_info else ''),
-      virus=(lab_info['virus'] if 'virus' in lab_info else ''),
-      protocol=(lab_info['protocol']
-            if 'protocol' in lab_info else '')
-
-      ## AttributeError: 'str' object has no attribute 'parent'
-      ## Broz: I thought these were notes about the stimulus?
-      ##    Error indicates trying to process stim file itself?
-      # stimulus=(lab_info['stimulus']
-      #       if 'stimulus' in lab_info else []),
-
-
+      **lab_info
       )
