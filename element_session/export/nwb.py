@@ -31,11 +31,12 @@ def session_to_nwb_dict(session_key):
       identifier='_'.join(session_identifier.values()),
       session_description=session_info['session_note'] if session_info['session_note'] else '',
       session_start_time=session_info['session_datetime'],
-      source_script_file_name='DataJoint element-session/export/nwb.py',
+      # source_script='DataJoint element-session NWB exporter',
+      # source_script_file_name='element-session/export/nwb.py',
       experimenter=list(experimenters)
       )
     for k in list(session_dict): # Drop blank entries
-      if len(session_dict[k]) == 0: elem_info.pop(k)
+      if len(str(session_dict[k])) == 0: elem_info.pop(k)
     return session_dict
 
 def session_to_nwb(session_key):
@@ -46,5 +47,5 @@ def session_to_nwb(session_key):
     :param session_key: entry in session.Session table
     :return: NWBFile object
     """
-  return NWBFile(session_to_nwb_dict(session_key))
+    return NWBFile(**session_to_nwb_dict(session_key))
 
