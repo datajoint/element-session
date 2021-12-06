@@ -40,7 +40,7 @@ class Session(dj.Manual):
     """
 
     @classmethod
-    def make_nwb(cls, session_key, lab_key = None, project_key = None, protocol_key = None):
+    def make_nwb(cls, session_key):
         from .export import session_to_nwb
         nwb_session = session_to_nwb(session_key)
         nwb_session.subject = _linking_module.Subject.make_nwb(session_key)
@@ -56,13 +56,12 @@ class SessionDirectory(dj.Manual):
     """
 
 
-# @schema
-# class SessionExperimenter(dj.Manual):
-#     definition = """
-#     -> Session
-#     -> Experimenter # Broz: Where is this upstream? Reflected on another fork?
-#     """
-
+@schema
+class SessionExperimenter(dj.Manual):
+    definition = """
+    -> Session
+    -> Experimenter
+    """
 
 @schema
 class SessionNote(dj.Manual):
