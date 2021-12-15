@@ -127,3 +127,4 @@ def convert_session_to_nwb(session_key: dict, subject_id=None):
         nwbfile_kwargs.update(subject=Subject(subject_id=subject_id))
 
     return NWBFile(**nwbfile_kwargs)
+
