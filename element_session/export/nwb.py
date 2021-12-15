@@ -19,7 +19,7 @@ except:
     HAVE_ELEMENT_LAB = False
 
 
-def convert_session_to_nwb(session_key: dict, subject_id=None):
+def session_to_nwb(session_key: dict, subject_id=None):
     """Gather session- and subject-level metadata and use it to create an NWBFile.
 
     Parameters
