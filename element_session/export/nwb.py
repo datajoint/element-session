@@ -38,10 +38,10 @@ def session_to_nwb(session_key: dict, subject_id=None):
     pynwb.NWBFile
 
     mappings:
-        Session.KEY -> NWBFile.session_id
-        Sesion.session_note -> NWBFile.session_description
-        Session.session_datetime -> NWBFile.session_start_time
-        SessionExperimenter.experimenter -> NWBFile.experimenter
+        Session::KEY -> NWBFile.session_id
+        Sesion::session_note -> NWBFile.session_description
+        Session::session_datetime -> NWBFile.session_start_time
+        SessionExperimenter::experimenter -> NWBFile.experimenter
 
         subject.Subject.subject -> NWBFile.subject.subject_id
         subject.Subject.sex -> NWBFile.subject.sex
