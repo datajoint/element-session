@@ -43,12 +43,12 @@ def session_to_nwb(session_key: dict, subject_id=None):
         Session::session_datetime -> NWBFile.session_start_time
         SessionExperimenter::experimenter -> NWBFile.experimenter
 
-        subject.Subject.subject -> NWBFile.subject.subject_id
-        subject.Subject.sex -> NWBFile.subject.sex
+        subject.Subject::subject -> NWBFile.subject.subject_id
+        subject.Subject::sex -> NWBFile.subject.sex
 
-        lab.Lab.institution -> NWBFile.institution
-        lab.Lab.lab_name -> NWBFile.lab
-        lab.Lab.time_zone -> NWBFile.session_start_time.timezone
+        lab.Lab::institution -> NWBFile.institution
+        lab.Lab::lab_name -> NWBFile.lab
+        lab.Lab::time_zone -> NWBFile.session_start_time.timezone
 
     """
 
