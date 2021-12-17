@@ -55,9 +55,8 @@ def session_to_nwb(session_key: dict, subject_id=None):
     # ensure only one session key is entered
     session_key = (session.Session & session_key).fetch1("KEY")
 
-    session_identifier = {}
-    for k, v in session_key.items():
-        session_identifier[k] = v.isoformat() if isinstance(v, datetime.datetime) else v
+    session_identifier = {k: v.isoformat() if isinstance(v, datetime.datetime) else v 
+                         for k, v in session_key.items()}
 
     nwbfile_kwargs = dict(
         session_id="_".join(session_identifier.values()), identifier=str(uuid4()),
