@@ -87,9 +87,7 @@ def session_to_nwb(session_key: dict, subject_id=None):
         .fetch("experimenter")
     )
 
-    nwbfile_kwargs.update(
-        experimenter=list(experimenters) if list(experimenters) else None
-    )
+    nwbfile_kwargs.update(experimenter=list(experimenters) or None)
 
     if HAVE_ELEMENT_ANIMAL and element_animal.subject.schema.is_activated():
 
