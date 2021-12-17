@@ -72,10 +72,7 @@ def session_to_nwb(session_key: dict, subject_id=None):
         )
     )
 
-    if "session_note" in session_info and session_info["session_note"]:
-        nwbfile_kwargs.update(session_description=session_info["session_note"])
-    else:
-        nwbfile_kwargs.update(session_description="no session note found")
+    nwbfile_kwargs.update(session_description=session_info.get("session_note", ""))   
 
     experimenter_pk = np.setxor1d(
         session.SessionExperimenter.primary_key, session.Session.primary_key,
