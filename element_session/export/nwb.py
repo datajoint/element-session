@@ -15,7 +15,7 @@ except ModuleNotFoundError:
 try:
     import element_lab
     HAVE_ELEMENT_LAB = True
-except:
+except ModuleNotFoundError:
     HAVE_ELEMENT_LAB = False
 
 
