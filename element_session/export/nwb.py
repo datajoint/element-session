@@ -10,7 +10,7 @@ from . import session
 try:
     import element_animal
     HAVE_ELEMENT_ANIMAL = True
-except:
+except ModuleNotFoundError:
     HAVE_ELEMENT_ANIMAL = False
 try:
     import element_lab
