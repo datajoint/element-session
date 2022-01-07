@@ -1,9 +1,7 @@
 import datetime
 from uuid import uuid4
 
-import numpy as np
-from pynwb import NWBFile
-from pynwb.file import Subject
+import pynwb
 
 from . import session
 
@@ -55,7 +53,7 @@ def session_to_nwb(session_key: dict, subject_id=None):
     # ensure only one session key is entered
     session_key = (session.Session & session_key).fetch1("KEY")
 
-    session_identifier = {k: v.isoformat() if isinstance(v, datetime.datetime) else v 
+    session_identifier = {k: v.isoformat() if isinstance(v, datetime.datetime) else v
                          for k, v in session_key.items()}
 
     nwbfile_kwargs = dict(
@@ -72,7 +70,7 @@ def session_to_nwb(session_key: dict, subject_id=None):
         )
     )
 
-    nwbfile_kwargs.update(session_description=session_info.get("session_note", ""))   
+    nwbfile_kwargs.update(session_description=session_info.get("session_note", ""))
 
     experimenter_pk = np.setxor1d(
         session.SessionExperimenter.primary_key, session.Session.primary_key,
@@ -118,7 +116,7 @@ def session_to_nwb(session_key: dict, subject_id=None):
             raise ValueError(
                 "If you are not using element_animal, you musts specify a subject_id."
             )
-        nwbfile_kwargs.update(subject=Subject(subject_id=subject_id))
+        nwbfile_kwargs.update(subject=pynwb.file.Subject(subject_id=subject_id))
 
-    return NWBFile(**nwbfile_kwargs)
+    return pynwb.NWBFile(**nwbfile_kwargs)
 
