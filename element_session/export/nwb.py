@@ -60,9 +60,7 @@ def session_to_nwb(session_key: dict, subject_id=None):
         session_id="_".join(session_identifier.values()), identifier=str(uuid4()),
     )
 
-    session_info = (
-        (session.Session & session_key).join(session.SessionNote, left=True).fetch1()
-    )
+    session_info = (session.Session & session_key).join(session.SessionNote, left=True).fetch1()
 
     nwbfile_kwargs.update(
         session_start_time=session_info["session_datetime"].astimezone(
