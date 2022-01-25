@@ -97,8 +97,8 @@ def session_to_nwb(session_key: dict, subject_id=None):
                 lab_record = lab_query.fetch1()
 
             nwbfile_kwargs.update(
-                institution=lab_record.get("institution", None),
-                lab=lab_record.get("lab_name", None),
+                institution=lab_record.get("institution"),
+                lab=lab_record.get("lab_name"),
             )
 
             # if timezone is present, localize session_start_time, which is in UTC be default
