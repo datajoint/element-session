@@ -94,7 +94,9 @@ def session_to_nwb(session_key: dict, subject_id=None):
         if HAVE_ELEMENT_LAB and element_lab.lab.schema.is_activated():
             lab_query = lab.Lab & subject.Subject.Lab() & session_key
             if lab_query:
-                lab_record = lab_query.fetch1()
+                ) try: lab_record = lab_query.fetch1()
+                # ...
+                except DataJointError: raise DataJointError('Multiple labs associated with this session. Try restricting your session key to specify lab.')
 
             nwbfile_kwargs.update(
                 institution=lab_record.get("institution"),
