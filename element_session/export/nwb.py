@@ -70,9 +70,8 @@ def session_to_nwb(session_key: dict, subject_id=None):
 
     nwbfile_kwargs.update(session_description=session_info.get("session_note", ""))
 
-    experimenter_pk = np.setxor1d(
-        session.SessionExperimenter.primary_key, session.Session.primary_key,
-    )
+    experimenter_pk = [k for k in session.SessionExperimenter.primary_key 
+                            if k not in session.Session.primary_key]
 
     experimenters = (
         (session.SessionExperimenter & session_key)
