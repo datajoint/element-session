@@ -96,15 +96,6 @@ def session_to_nwb(session_key: dict, subject_id=None):
                     )
 
                     # if timezone is present, localize session_start_time, which is in UTC be default
-                    if (
-                        "time_zone" in lab_record
-                        and lab_record["time_zone"][:3] == "UTC"
-                    ):
-                        hours = int(lab_record["time_zone"][3:])
-                        hours_timedelta = timedelta(hours=hours)
-                        nwbfile_kwargs["session_start_time"].astimezone(
-                            timezone(hours_timedelta)
-                        )
                 except DataJointError:
                     raise DataJointError(
                         "Multiple labs associated with this session. Try restricting your session key to specify lab."
