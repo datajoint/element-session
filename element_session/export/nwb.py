@@ -19,7 +19,13 @@ except ModuleNotFoundError:
     HAVE_ELEMENT_LAB = False
 
 
-def session_to_nwb(session_key: dict, subject_id=None):
+def session_to_nwb(
+    session_key: dict,
+    subject_id=None,
+    lab_key=None,
+    project_key=None,
+    protocol_key=None,
+):
     """Gather session- and subject-level metadata and use it to create an NWBFile.
 
     Parameters
@@ -32,6 +38,9 @@ def session_to_nwb(session_key: dict, subject_id=None):
         }
     subject_id: str, optional
         Indicate subject_id if it cannot be inferred
+    lab_key: dict, optional
+    project_key: dict, optional
+    protocol_key: dict, optional
 
     Returns
     -------
@@ -48,7 +57,13 @@ def session_to_nwb(session_key: dict, subject_id=None):
 
         lab.Lab::institution -> NWBFile.institution
         lab.Lab::lab_name -> NWBFile.lab
-        lab.Lab::time_zone -> NWBFile.session_start_time.timezone
+
+        lab.Protocol::protocol -> NWBFile.protocol
+        lab.Protocol::notes -> NWBFile.notes
+
+        lab.Project::experiment_description -> NWBFile.experiment_description
+        lab.Project.Keywords.keyword -> NWBFile.keywords
+        lab.Project.Publications.publication -> NWBFile.related_publications
 
     """
 
@@ -86,35 +101,17 @@ def session_to_nwb(session_key: dict, subject_id=None):
         nwbfile_kwargs.update(subject=subject_to_nwb(subject_key))
 
         if HAVE_ELEMENT_LAB and element_lab.lab.schema.is_activated():
-            lab_query = lab.Lab & subject.Subject.Lab() & session_key
-            if lab_query:
-                try:
-                    lab_record = lab_query.fetch1()
-                    nwbfile_kwargs.update(
-                        institution=lab_record.get("institution"),
-                        lab=lab_record.get("lab_name"),
-                    )
-
-                    # if timezone is present, localize session_start_time, which is in UTC be default
-                    if (
-                        "time_zone" in lab_record
-                        and lab_record["time_zone"][:3] == "UTC"
-                    ):
-                        hours = int(lab_record["time_zone"][3:])
-                        hours_timedelta = timedelta(hours=hours)
-                        nwbfile_kwargs["session_start_time"].astimezone(
-                            timezone(hours_timedelta)
-                        )
-                except DataJointError:
-                    raise DataJointError(
-                        "Multiple labs associated with this session. Try restricting your session key to specify lab."
-                    )
+            from element_lab.export.nwb import elementlab_nwb_dict
+            nwbfile_kwargs.update(
+                elementlab_nwb_dict(
+                    lab_key=lab_key, project_key=project_key, protocol_key=protocol_key
+                )
+            )
 
     else:
+        subject_id = subject_id or session_key.get("subject")
         if subject_id is None:
-            raise ValueError(
-                "If you are not using element_animal, you musts specify a subject_id."
-            )
+            raise ValueError("You musts specify a subject_id.")
         nwbfile_kwargs.update(subject=pynwb.file.Subject(subject_id=subject_id))
 
     return pynwb.NWBFile(**nwbfile_kwargs)
