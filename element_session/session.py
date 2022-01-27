@@ -39,13 +39,6 @@ class Session(dj.Manual):
     session_datetime: datetime(3)
     """
 
-    @classmethod
-    def make_nwb(cls, session_key):
-        from .export import session_to_nwb
-        nwb_session = session_to_nwb(session_key)
-        nwb_session.subject = _linking_module.Subject.make_nwb(session_key)
-        return nwb_session
-
 
 @schema
 class SessionDirectory(dj.Manual):
