@@ -113,3 +113,4 @@ dj_local_conf_old.json
 **/.#*
 
 docker-compose.y*ml
+.DS_Store
