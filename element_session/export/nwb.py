@@ -96,9 +96,7 @@ def session_to_nwb(
     if HAVE_ELEMENT_ANIMAL and element_animal.subject.schema.is_activated():
         from element_animal.export.nwb import subject_to_nwb
 
-        subject_key = subject.Subject & session_key
-
-        nwbfile_kwargs.update(subject=subject_to_nwb(subject_key))
+        nwbfile_kwargs.update(subject=subject_to_nwb(session_key))
 
         if HAVE_ELEMENT_LAB and element_lab.lab.schema.is_activated():
             from element_lab.export.nwb import elementlab_nwb_dict
