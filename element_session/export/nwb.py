@@ -20,11 +20,12 @@ except ModuleNotFoundError:
 
 
 def session_to_nwb(
-    session_key: dict,
-    subject_id=None,
-    lab_key=None,
-    project_key=None,
-    protocol_key=None,
+        session_key: dict,
+        subject_id=None,
+        lab_key=None,
+        project_key=None,
+        protocol_key=None,
+        additional_nwbfile_kwargs=None,
 ):
     """Gather session- and subject-level metadata and use it to create an NWBFile.
 
@@ -38,9 +39,10 @@ def session_to_nwb(
         }
     subject_id: str, optional
         Indicate subject_id if it cannot be inferred
-    lab_key: dict, optional
-    project_key: dict, optional
-    protocol_key: dict, optional
+    lab_key, project_key, protocol_key: dict, optional
+        Used to gather additional optional metadata.
+    additional_nwbfile_kwargs: dict, optional
+        Optionally overwrite or add fields to NWBFile.
 
     Returns
     -------
@@ -89,14 +91,16 @@ def session_to_nwb(
 
     nwbfile_kwargs.update(session_description=session_info.get("session_note", ""))
 
-    experimenters = (session.SessionExperimenter & session_key).fetch("experimenter")
+    experimenters = list((session.SessionExperimenter & session_key).fetch("user"))
 
     nwbfile_kwargs.update(experimenter=list(experimenters) or None)
 
     if HAVE_ELEMENT_ANIMAL and element_animal.subject.schema.is_activated():
         from element_animal.export.nwb import subject_to_nwb
 
-        nwbfile_kwargs.update(subject=subject_to_nwb(session_key))
+        subject_key = subject.Subject & session_key
+
+        nwbfile_kwargs.update(subject=subject_to_nwb(subject_key))
 
         if HAVE_ELEMENT_LAB and element_lab.lab.schema.is_activated():
             from element_lab.export.nwb import elementlab_nwb_dict
@@ -111,5 +115,8 @@ def session_to_nwb(
         if subject_id is None:
             raise ValueError("You musts specify a subject_id.")
         nwbfile_kwargs.update(subject=pynwb.file.Subject(subject_id=subject_id))
+
+    if additional_nwbfile_kwargs is not None:
+        nwbfile_kwargs.update(additional_nwbfile_kwargs)
 
     return pynwb.NWBFile(**nwbfile_kwargs)
