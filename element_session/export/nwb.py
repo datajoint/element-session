@@ -3,7 +3,7 @@ from uuid import uuid4
 
 import pynwb
 
-from . import session
+from workflow_array_ephys.pipeline import session
 
 try:
     import element_animal
