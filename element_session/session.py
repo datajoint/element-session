@@ -22,6 +22,8 @@ def activate(schema_name, create_schema=True, create_tables=True,
                 + Subject: the subject with which an experimental session is associated
                 + Project: the project with which experimental sessions are associated
                 + Experimenter: the experimenter(s) participating in a given session
+                                To supply from element-lab add `Experimenter = lab.User`
+                                to your workflow pipeline before `subject.activate()`
     """
     if isinstance(linking_module, str):
         linking_module = importlib.import_module(linking_module)
@@ -55,6 +57,7 @@ class SessionDirectory(dj.Manual):
 @schema
 class SessionExperimenter(dj.Manual):
     definition = """
+    # Individual(s) conducting the session
     -> Session
     -> Experimenter
     """
