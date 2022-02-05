@@ -23,7 +23,7 @@ def activate(schema_name, create_schema=True, create_tables=True,
                 + Project: the project with which experimental sessions are associated
                 + Experimenter: the experimenter(s) participating in a given session
                                 To supply from element-lab add `Experimenter = lab.User`
-                                to your workflow pipeline before `subject.activate()`
+                                to your `workflow/pipeline.py` before `session.activate()`
     """
     if isinstance(linking_module, str):
         linking_module = importlib.import_module(linking_module)
