@@ -9,7 +9,9 @@ def test_session_to_nwb():
         'subject': 'subject5',
         'session_datetime': datetime.datetime(2020, 5, 12, 4, 13, 7)
     }
-
+lab_key = {'lab': 'LabA'}
+protocol_key = {'protocol': 'ProtA'}
+project_key = {'project': 'ProjA'}
     nwbfile = session_to_nwb(session_key)
 
     assert nwbfile.session_id == 'subject5_2020-05-12T04:13:07'
