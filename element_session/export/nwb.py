@@ -100,9 +100,9 @@ def session_to_nwb(
         nwbfile_kwargs.update(subject=subject_to_nwb(session_key))
 
         if HAVE_ELEMENT_LAB and element_lab.lab.schema.is_activated() and any([lab_key, project_key, protocol_key]):
-            from element_lab.export.nwb import elementlab_nwb_dict
+            from element_lab.export.nwb import element_lab_to_nwb_dict
             nwbfile_kwargs.update(
-                elementlab_nwb_dict(
+               element_lab_to_nwb_dict(
                     lab_key=lab_key, project_key=project_key, protocol_key=protocol_key
                 )
             )
