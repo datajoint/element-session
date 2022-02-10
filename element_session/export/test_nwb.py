@@ -12,7 +12,7 @@ def test_session_to_nwb():
 lab_key = {'lab': 'LabA'}
 protocol_key = {'protocol': 'ProtA'}
 project_key = {'project': 'ProjA'}
-    nwbfile = session_to_nwb(session_key)
+    nwbfile = session_to_nwb(session_key, lab_key=lab_key, protocol_key=protocol_key, project_key=project_key)
 
     assert nwbfile.session_id == 'subject5_2020-05-12T04:13:07'
     assert nwbfile.session_description == "Test"
