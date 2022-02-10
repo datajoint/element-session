@@ -74,23 +74,6 @@ class SessionNote(dj.Manual):
 
 
 @schema
-class SessionExperimenter(dj.Manual):
-    definition = """
-    -> Session
-    -> Experimenter
-    """
-
-
-@schema
-class SessionNote(dj.Manual):
-    definition = """
-    -> Session
-    ---
-    session_note: varchar(1000)
-    """
-
-
-@schema
 class ProjectSession(dj.Manual):
     definition = """
     -> Project
