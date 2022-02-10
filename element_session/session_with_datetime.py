@@ -3,7 +3,6 @@ import importlib
 import inspect
 
 schema = dj.schema()
-_linking_module = None
 
 _linking_module = None
 
