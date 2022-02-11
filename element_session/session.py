@@ -5,8 +5,6 @@ import inspect
 schema = dj.schema()
 _linking_module = None
 
-_linking_module = None
-
 
 def activate(schema_name, create_schema=True, create_tables=True,
              linking_module=None):
@@ -51,23 +49,6 @@ class SessionDirectory(dj.Manual):
     -> Session
     ---
     session_dir: varchar(256) # Path to the data directory for a session
-    """
-
-
-@schema
-class SessionExperimenter(dj.Manual):
-    definition = """
-    -> Session
-    -> Experimenter
-    """
-
-
-@schema
-class SessionNote(dj.Manual):
-    definition = """
-    -> Session
-    ---
-    session_note: varchar(1024)
     """
 
 

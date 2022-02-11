@@ -1,19 +1,15 @@
 import datetime
 from uuid import uuid4
-
+import datajoint as dj
 import pynwb
 
-from workflow_array_ephys.pipeline import session
-
 try:
-    import element_animal
-
+    import element_animal.subject
     HAVE_ELEMENT_ANIMAL = True
 except ModuleNotFoundError:
     HAVE_ELEMENT_ANIMAL = False
 try:
-    import element_lab
-
+    import element_lab.lab
     HAVE_ELEMENT_LAB = True
 except ModuleNotFoundError:
     HAVE_ELEMENT_LAB = False
@@ -21,12 +17,14 @@ except ModuleNotFoundError:
 
 def session_to_nwb(
         session_key: dict,
+        lab_schema_name=(dj.config['custom']['database.prefix']+'lab'),
+        subject_schema_name=(dj.config['custom']['database.prefix']+'subject'),
+        session_schema_name=(dj.config['custom']['database.prefix']+'session'),
         subject_id=None,
         lab_key=None,
         project_key=None,
         protocol_key=None,
-        additional_nwbfile_kwargs=None,
-):
+        additional_nwbfile_kwargs=None):
     """Gather session- and subject-level metadata and use it to create an NWBFile.
 
     Parameters
@@ -37,6 +35,8 @@ def session_to_nwb(
             'subject': 'subject5',
             'session_datetime': datetime.datetime(2020, 5, 12, 4, 13, 7)
         }
+    {lab/subject/session}_schema_name devault to dj.config['custom']['database.prefix']
+        plus the relevant string {lab/subject/session}.
     subject_id: str, optional
         Indicate subject_id if it cannot be inferred
     lab_key, project_key, protocol_key: dict, optional
@@ -68,26 +68,27 @@ def session_to_nwb(
         lab.Project.Publications.publication -> NWBFile.related_publications
 
     """
+    if HAVE_ELEMENT_LAB:
+        lab = dj.create_virtual_module('lab', lab_schema_name)
+    if HAVE_ELEMENT_ANIMAL:
+        subject = dj.create_virtual_module('subject', subject_schema_name)
+    session = dj.create_virtual_module('session', session_schema_name)
 
     # ensure only one session key is entered
     session_key = (session.Session & session_key).fetch1("KEY")
 
     session_identifier = {
         k: v.isoformat() if isinstance(v, datetime.datetime) else v
-        for k, v in session_key.items()
-    }
+        for k, v in session_key.items()}
 
     nwbfile_kwargs = dict(
-        session_id="_".join(session_identifier.values()), identifier=str(uuid4()),
-    )
+        session_id="_".join(session_identifier.values()), identifier=str(uuid4()))
 
     session_info = (session.Session & session_key).join(session.SessionNote, left=True).fetch1()
 
     nwbfile_kwargs.update(
         session_start_time=session_info["session_datetime"].astimezone(
-            datetime.timezone.utc
-        )
-    )
+            datetime.timezone.utc))
 
     nwbfile_kwargs.update(session_description=session_info.get("session_note", ""))
 
@@ -95,14 +96,14 @@ def session_to_nwb(
 
     nwbfile_kwargs.update(experimenter=list(experimenters) or None)
 
-    if HAVE_ELEMENT_ANIMAL and element_animal.subject.schema.is_activated():
+    if HAVE_ELEMENT_ANIMAL:
         from element_animal.export.nwb import subject_to_nwb
         nwbfile_kwargs.update(subject=subject_to_nwb(session_key))
 
-        if HAVE_ELEMENT_LAB and element_lab.lab.schema.is_activated():
-            from element_lab.export.nwb import elementlab_nwb_dict
+        if HAVE_ELEMENT_LAB and any([lab_key, project_key, protocol_key]):
+            from element_lab.export.nwb import element_lab_to_nwb_dict
             nwbfile_kwargs.update(
-                elementlab_nwb_dict(
+                element_lab_to_nwb_dict(
                     lab_key=lab_key, project_key=project_key, protocol_key=protocol_key
                 )
             )
