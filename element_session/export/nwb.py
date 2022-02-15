@@ -3,24 +3,13 @@ from uuid import uuid4
 import datajoint as dj
 import pynwb
 
-try:
-    import element_animal.subject
-    HAVE_ELEMENT_ANIMAL = True
-except ModuleNotFoundError:
-    HAVE_ELEMENT_ANIMAL = False
-try:
-    import element_lab.lab
-    HAVE_ELEMENT_LAB = True
-except ModuleNotFoundError:
-    HAVE_ELEMENT_LAB = False
+from .. import session
+
+assert session.schema.is_activated()
 
 
 def session_to_nwb(
         session_key: dict,
-        lab_schema_name=(dj.config['custom']['database.prefix']+'lab'),
-        subject_schema_name=(dj.config['custom']['database.prefix']+'subject'),
-        session_schema_name=(dj.config['custom']['database.prefix']+'session'),
-        subject_id=None,
         lab_key=None,
         project_key=None,
         protocol_key=None,
@@ -68,10 +57,6 @@ def session_to_nwb(
         lab.Project.Publications.publication -> NWBFile.related_publications
 
     """
-    if HAVE_ELEMENT_LAB:
-        lab = dj.create_virtual_module('lab', lab_schema_name)
-    if HAVE_ELEMENT_ANIMAL:
-        subject = dj.create_virtual_module('subject', subject_schema_name)
     session = dj.create_virtual_module('session', session_schema_name)
 
     # ensure only one session key is entered
@@ -96,23 +81,24 @@ def session_to_nwb(
 
     nwbfile_kwargs.update(experimenter=list(experimenters) or None)
 
-    if HAVE_ELEMENT_ANIMAL:
-        from element_animal.export.nwb import subject_to_nwb
+    try:
+        subject_to_nwb = getattr(session._linking_module, 'subject_to_nwb')
+    except AttributeError:
+        subject_id = '_'.join((getattr(session._linking_module, 'Subject') & session_key).fetch1('KEY').values())
+        nwbfile_kwargs.update(subject=pynwb.file.Subject(subject_id=subject_id))
+    else:
         nwbfile_kwargs.update(subject=subject_to_nwb(session_key))
 
-        if HAVE_ELEMENT_LAB and any([lab_key, project_key, protocol_key]):
-            from element_lab.export.nwb import element_lab_to_nwb_dict
-            nwbfile_kwargs.update(
-                element_lab_to_nwb_dict(
-                    lab_key=lab_key, project_key=project_key, protocol_key=protocol_key
-                )
-            )
-
+    try:
+        element_lab_to_nwb_dict = getattr(session._linking_module, 'element_lab_to_nwb_dict') 
+    except AttributeError:
+        pass
     else:
-        subject_id = subject_id or session_key.get("subject")
-        if subject_id is None:
-            raise ValueError("You musts specify a subject_id.")
-        nwbfile_kwargs.update(subject=pynwb.file.Subject(subject_id=subject_id))
+        nwbfile_kwargs.update(
+                        element_lab_to_nwb_dict(
+                            lab_key=lab_key, project_key=project_key, protocol_key=protocol_key
+                        )
+                    )
 
     if additional_nwbfile_kwargs is not None:
         nwbfile_kwargs.update(additional_nwbfile_kwargs)
