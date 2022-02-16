@@ -14,7 +14,9 @@ def session_to_nwb(
         project_key=None,
         protocol_key=None,
         additional_nwbfile_kwargs=None):
-    """Gather session- and subject-level metadata and use it to create an NWBFile.
+    """Gather session- and subject-level metadata and use it to create an NWBFile. If
+    there is no subject_to_nwb export function in the current namespace, subject_id will
+    be inferred from the set of primary keys in the Subject table upstream of Session.
 
     Parameters
     ----------
@@ -24,10 +26,6 @@ def session_to_nwb(
             'subject': 'subject5',
             'session_datetime': datetime.datetime(2020, 5, 12, 4, 13, 7)
         }
-    {lab/subject/session}_schema_name devault to dj.config['custom']['database.prefix']
-        plus the relevant string {lab/subject/session}.
-    subject_id: str, optional
-        Indicate subject_id if it cannot be inferred
     lab_key, project_key, protocol_key: dict, optional
         Used to gather additional optional metadata.
     additional_nwbfile_kwargs: dict, optional
@@ -57,7 +55,6 @@ def session_to_nwb(
         lab.Project.Publications.publication -> NWBFile.related_publications
 
     """
-    session = dj.create_virtual_module('session', session_schema_name)
 
     # ensure only one session key is entered
     session_key = (session.Session & session_key).fetch1("KEY")
