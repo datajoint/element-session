@@ -3,16 +3,19 @@ import importlib
 import inspect
 
 schema = dj.schema()
-
 _linking_module = None
 
 
-def activate(schema_name, create_schema=True, create_tables=True, linking_module=None):
+def activate(schema_name, create_schema=True, create_tables=True,
+             linking_module=None):
     """
     activate(schema_name, create_schema=True, create_tables=True, linking_module=None)
-        :param schema_name: schema name on the database server to activate the `session` element
-        :param create_schema: when True (default), create schema in the database if it does not yet exist.
-        :param create_tables: when True (default), create tables in the database if they do not yet exist.
+        :param schema_name: schema name on the database server to activate
+                            the `session` element
+        :param create_schema: when True (default), create schema in the
+                              database if it does not yet exist.
+        :param create_tables: when True (default), create tables in the
+                              database if they do not yet exist.
         :param linking_module: a module name or a module containing the
          required dependencies to activate the `session` element:
              Upstream tables:
@@ -36,7 +39,7 @@ def activate(schema_name, create_schema=True, create_tables=True, linking_module
 class Session(dj.Manual):
     definition = """
     -> Subject
-    session_datetime: datetime(3)
+    session_datetime: datetime
     """
 
 
@@ -45,7 +48,7 @@ class SessionDirectory(dj.Manual):
     definition = """
     -> Session
     ---
-    session_dir: varchar(256)       # Path to the data directory for a particular session
+    session_dir: varchar(256) # Path to the data directory for a session
     """
 
 

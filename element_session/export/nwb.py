@@ -1,22 +1,11 @@
 import datetime
 from uuid import uuid4
-
+import datajoint as dj
 import pynwb
 
-from workflow_array_ephys.pipeline import session
+from .. import session
 
-try:
-    import element_animal
-
-    HAVE_ELEMENT_ANIMAL = True
-except ModuleNotFoundError:
-    HAVE_ELEMENT_ANIMAL = False
-try:
-    import element_lab
-
-    HAVE_ELEMENT_LAB = True
-except ModuleNotFoundError:
-    HAVE_ELEMENT_LAB = False
+assert session.schema.is_activated()
 
 
 def session_to_nwb(
@@ -25,9 +14,10 @@ def session_to_nwb(
         lab_key=None,
         project_key=None,
         protocol_key=None,
-        additional_nwbfile_kwargs=None,
-):
-    """Gather session- and subject-level metadata and use it to create an NWBFile.
+        additional_nwbfile_kwargs=None):
+    """Gather session- and subject-level metadata and use it to create an NWBFile. If
+    there is no subject_to_nwb export function in the current namespace, subject_id will
+    be inferred from the set of primary keys in the Subject table upstream of Session.
 
     Parameters
     ----------
@@ -95,23 +85,17 @@ def session_to_nwb(
 
     nwbfile_kwargs.update(experimenter=list(experimenters) or None)
 
-    if HAVE_ELEMENT_ANIMAL and element_animal.subject.schema.is_activated():
-        from element_animal.export.nwb import subject_to_nwb
+    subject_to_nwb = getattr(session._linking_module, "subject_to_nwb", False)
+
+    if subject_to_nwb:
         nwbfile_kwargs.update(subject=subject_to_nwb(session_key))
-
-        if HAVE_ELEMENT_LAB and element_lab.lab.schema.is_activated() and any([lab_key, project_key, protocol_key]):
-            from element_lab.export.nwb import element_lab_to_nwb_dict
-            nwbfile_kwargs.update(
-               element_lab_to_nwb_dict(
-                    lab_key=lab_key, project_key=project_key, protocol_key=protocol_key
-                )
-            )
-
     else:
-        subject_id = subject_id or session_key.get("subject")
-        if subject_id is None:
-            raise ValueError("You musts specify a subject_id.")
+        subject_id = '_'.join((getattr(session._linking_module, 'Subject') & session_key).fetch1('KEY').values())
         nwbfile_kwargs.update(subject=pynwb.file.Subject(subject_id=subject_id))
+
+    if any([lab_key, project_key, protocol_key]):
+        element_lab_to_nwb_dict = getattr(session._linking_module, "element_lab_to_nwb_dict", {})
+        nwbfile_kwargs.update(element_lab_to_nwb_dict)
 
     if additional_nwbfile_kwargs is not None:
         nwbfile_kwargs.update(additional_nwbfile_kwargs)
