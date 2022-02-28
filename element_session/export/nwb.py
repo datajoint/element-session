@@ -10,7 +10,6 @@ assert session.schema.is_activated()
 
 def session_to_nwb(
         session_key: dict,
-        subject_id=None,
         lab_key=None,
         project_key=None,
         protocol_key=None,
