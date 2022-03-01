@@ -13,7 +13,8 @@ def session_to_nwb(
         lab_key=None,
         project_key=None,
         protocol_key=None,
-        additional_nwbfile_kwargs=None):
+        additional_nwbfile_kwargs=None,
+):
     """Gather session- and subject-level metadata and use it to create an NWBFile. If
     there is no subject_to_nwb export function in the current namespace, subject_id will
     be inferred from the set of primary keys in the Subject table upstream of Session.
@@ -24,7 +25,7 @@ def session_to_nwb(
         e.g.,
         {
             'subject': 'subject5',
-            'session_datetime': datetime.datetime(2020, 5, 12, 4, 13, 7)
+            'session_datetime': datetime.datetime(2020, 5, 12, 4, 13, 7),
         }
     subject_id: str, optional
         Indicate subject_id if it cannot be inferred
@@ -94,7 +95,14 @@ def session_to_nwb(
 
     if any([lab_key, project_key, protocol_key]):
         element_lab_to_nwb_dict = getattr(session._linking_module, "element_lab_to_nwb_dict", {})
-        nwbfile_kwargs.update(element_lab_to_nwb_dict)
+
+        nwbfile_kwargs.update(
+            **element_lab_to_nwb_dict(
+                lab_key=lab_key,
+                project_key=project_key,
+                protocol_key=protocol_key,
+            )
+        )
 
     if additional_nwbfile_kwargs is not None:
         nwbfile_kwargs.update(additional_nwbfile_kwargs)
