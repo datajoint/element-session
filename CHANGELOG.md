@@ -6,7 +6,8 @@ Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and
 ### Added
 + SessionExperimenter
 + SessionNote
-+ NWB export
++ Added `session_with_id` module with session primary key as integer
++ Renamed `session` module to `session_with_datetime`
 
 
 ## [0.1.0b0] - 2021-05-07

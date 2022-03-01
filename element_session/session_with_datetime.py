@@ -3,6 +3,7 @@ import importlib
 import inspect
 
 schema = dj.schema()
+
 _linking_module = None
 
 
@@ -57,6 +58,7 @@ class SessionDirectory(dj.Manual):
 @schema
 class SessionExperimenter(dj.Manual):
     definition = """
+    # Individual(s) conducting the session
     -> Session
     -> Experimenter
     """
@@ -67,7 +69,7 @@ class SessionNote(dj.Manual):
     definition = """
     -> Session
     ---
-    session_note: varchar(1000)
+    session_note: varchar(1024)
     """
 
 
