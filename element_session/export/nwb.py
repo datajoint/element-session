@@ -1,6 +1,5 @@
 import datetime
 from uuid import uuid4
-import datajoint as dj
 import pynwb
 
 from .. import session
