@@ -1,2 +1,2 @@
 datajoint>=0.13.0
-pynwb
+pynwb>=1.4.0
