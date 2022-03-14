@@ -26,8 +26,6 @@ def session_to_nwb(
             'subject': 'subject5',
             'session_datetime': datetime.datetime(2020, 5, 12, 4, 13, 7),
         }
-    subject_id: str, optional
-        Indicate subject_id if it cannot be inferred
     lab_key, project_key, protocol_key: dict, optional
         Used to gather additional optional metadata.
     additional_nwbfile_kwargs: dict, optional
