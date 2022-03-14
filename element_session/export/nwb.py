@@ -96,7 +96,7 @@ def session_to_nwb(
         element_lab_to_nwb_dict = getattr(session._linking_module, "element_lab_to_nwb_dict", {})
 
         nwbfile_kwargs.update(
-            **element_lab_to_nwb_dict(
+            element_lab_to_nwb_dict(
                 lab_key=lab_key,
                 project_key=project_key,
                 protocol_key=protocol_key,
