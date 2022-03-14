@@ -16,7 +16,7 @@ def session_to_nwb(
 ):
     """Gather session- and subject-level metadata and use it to create an NWBFile. If
     there is no subject_to_nwb export function in the current namespace, subject_id will
-    be inferred from the set of primary keys in the Subject table upstream of Session.
+    be inferred from the set of primary attributes in the Subject table upstream of Session.
 
     Parameters
     ----------
