@@ -3,7 +3,6 @@ import importlib
 import inspect
 
 schema = dj.schema()
-
 _linking_module = None
 
 
@@ -46,7 +45,7 @@ class Session(dj.Manual):
     ---
     session_datetime: datetime
     """
-    
+
 
 @schema
 class SessionDirectory(dj.Manual):
@@ -72,6 +71,7 @@ class SessionNote(dj.Manual):
     -> Session
     ---
     session_note: varchar(1024)
+
     """
 
 
