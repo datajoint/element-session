@@ -70,7 +70,8 @@ class SessionNote(dj.Manual):
     definition = """
     -> Session
     ---
-    session_note: varchar(1000)
+    session_note: varchar(1024)
+
     """
 
 
