@@ -52,9 +52,9 @@ def session_to_nwb(
         lab.Protocol::protocol -> NWBFile.protocol
         lab.Protocol::notes -> NWBFile.notes
 
-        lab.Project::experiment_description -> NWBFile.experiment_description
-        lab.Project.Keywords.keyword -> NWBFile.keywords
-        lab.Project.Publications.publication -> NWBFile.related_publications
+        lab.Project::project_description -> NWBFile.experiment_description
+        lab.ProjectKeywords.keyword -> NWBFile.keywords
+        lab.ProjectPublication.publication -> NWBFile.related_publications
 
     """
 
