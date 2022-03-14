@@ -26,6 +26,7 @@ def session_to_nwb(
             'subject': 'subject5',
             'session_datetime': datetime.datetime(2020, 5, 12, 4, 13, 7),
         }
+        Assumes session_datetime is in UTC time zone.
     lab_key, project_key, protocol_key: dict, optional
         Used to gather additional optional metadata.
     additional_nwbfile_kwargs: dict, optional
@@ -91,15 +92,14 @@ def session_to_nwb(
         nwbfile_kwargs.update(subject=pynwb.file.Subject(subject_id=subject_id))
 
     if any([lab_key, project_key, protocol_key]):
-        element_lab_to_nwb_dict = getattr(session._linking_module, "element_lab_to_nwb_dict", {})
+        element_lab_to_nwb_dict = getattr(session._linking_module, "element_lab_to_nwb_dict", False)
 
-        nwbfile_kwargs.update(
-            element_lab_to_nwb_dict(
-                lab_key=lab_key,
-                project_key=project_key,
-                protocol_key=protocol_key,
-            )
-        )
+        if element_lab_to_nwb_dict:
+            nwbfile_kwargs.update(
+                element_lab_to_nwb_dict(
+                    lab_key=lab_key,
+                    project_key=project_key,
+                    protocol_key=protocol_key))
 
     if additional_nwbfile_kwargs is not None:
         nwbfile_kwargs.update(additional_nwbfile_kwargs)
