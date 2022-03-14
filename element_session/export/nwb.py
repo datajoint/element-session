@@ -80,7 +80,7 @@ def session_to_nwb(
 
     nwbfile_kwargs.update(session_description=session_info.get("session_note", ""))
 
-    experimenters = list((session.SessionExperimenter & session_key).fetch("user"))
+    experimenters =(session.SessionExperimenter & session_key).fetch("user")
 
     nwbfile_kwargs.update(experimenter=list(experimenters) or None)
 
