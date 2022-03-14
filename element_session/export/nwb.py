@@ -50,7 +50,7 @@ def session_to_nwb(
         lab.Lab::lab_name -> NWBFile.lab
 
         lab.Protocol::protocol -> NWBFile.protocol
-        lab.Protocol::notes -> NWBFile.notes
+        lab.Protocol::protocol_description -> NWBFile.notes
 
         lab.Project::project_description -> NWBFile.experiment_description
         lab.ProjectKeywords.keyword -> NWBFile.keywords
