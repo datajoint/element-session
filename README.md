@@ -10,6 +10,10 @@
 
 + For more information on the DataJoint Elements project, please visit https://elements.datajoint.org.  This work is supported by the National Institutes of Health.
 
+## Element architecture
+
+![element-session diagram](images/session_diagram.svg)
+
 ## Installation
 ```
 pip install element-session
