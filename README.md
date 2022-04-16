@@ -1,6 +1,4 @@
-# DataJoint Element - Session
-
-DataJoint element for session management - U24 effort
+# DataJoint Element - Session Management
 
 + `element-session` features a DataJoint pipeline design for session management. 
 
@@ -17,11 +15,10 @@ DataJoint element for session management - U24 effort
 pip install element-session
 ```
 
-If you already have an older version of ***element-session*** installed using `pip`, upgrade with
+If you already have an older version of `element-session` installed using `pip`, upgrade with
 ```
 pip install --upgrade element-session
 ```
-
 
 ## Element usage
 
