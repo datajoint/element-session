@@ -29,7 +29,7 @@ pip install --upgrade element-session
 + See the [workflow-calcium-imaging](https://github.com/datajoint/workflow-calcium-imaging)
  and [workflow-array-ephys](https://github.com/datajoint/workflow-array-ephys) repositories for example usages of `element-session`.
 
- ## Citation
+## Citation
 
 + If your work uses DataJoint and DataJoint Elements, please cite the respective Research Resource Identifiers (RRIDs) and manuscripts.
 
