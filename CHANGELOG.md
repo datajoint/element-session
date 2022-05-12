@@ -2,12 +2,13 @@
 
 Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) convention.
 
-## [unreleased] 
+## [0.1.1] - 2022-05-10
 ### Added
 + SessionExperimenter
 + SessionNote
 + Added `session_with_id` module with session primary key as integer
 + Renamed `session` module to `session_with_datetime`
++ Adopted black formatting into code base
 
 
 ## [0.1.0b0] - 2021-05-07
