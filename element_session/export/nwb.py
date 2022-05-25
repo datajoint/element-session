@@ -4,7 +4,7 @@ import pynwb
 
 from .. import session
 
-assert session.schema.is_activated()
+# assert session.schema.is_activated()
 
 
 def session_to_nwb(
