@@ -23,7 +23,7 @@ Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and
 + Add - GitHub Action release process
 + Add - `session` schema
 
-[0.1.2]: https://github.com/datajoint/element-session/compare/0.1.1...0.1.2
+[0.1.2]: https://github.com/datajoint/element-session/releases/tag/0.1.2
 [0.1.1]: https://github.com/datajoint/element-session/compare/0.1.0b0...0.1.1
-[0.1.0b0]: https://github.com/datajoint/element-session/compare/0.1.0a1...0.1.0b0
+[0.1.0b0]: https://github.com/datajoint/element-session/releases/tag/0.1.0b0
 [0.1.0a1]: https://github.com/datajoint/element-session/releases/tag/0.1.0a1
