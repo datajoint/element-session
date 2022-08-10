@@ -47,6 +47,8 @@ class Session(dj.Manual):
     definition = """
     -> Subject
     session_datetime: datetime
+    ---
+    utc_offset=0    : int      # UTC offset ±hhmm for above datetime. If already UTC, 0.
     """
 
 
