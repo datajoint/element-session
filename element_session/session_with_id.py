@@ -84,7 +84,6 @@ class SessionNote(dj.Manual):
     -> Session
     ---
     session_note: varchar(1024)
-
     """
 
 
