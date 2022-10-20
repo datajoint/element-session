@@ -50,6 +50,15 @@ class Session(dj.Manual):
     session_datetime: datetime
     """
 
+    class Attribute(dj.Part):
+        definition = """
+        -> master
+        attribute_name: varchar(32)
+        ---
+        attribute_value='': varchar(2000)
+        attribute_blob=null: longblob
+        """
+
 
 @schema
 class SessionDirectory(dj.Manual):
@@ -75,7 +84,6 @@ class SessionNote(dj.Manual):
     -> Session
     ---
     session_note: varchar(1024)
-
     """
 
 
