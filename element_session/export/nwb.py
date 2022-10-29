@@ -4,54 +4,54 @@ import pynwb
 
 from .. import session
 
+
 def session_to_nwb(
     session_key: dict,
-    lab_key=None,
-    project_key=None,
-    protocol_key=None,
+    lab_key: dict = None,
+    project_key: dict = None,
+    protocol_key: dict = None,
     additional_nwbfile_kwargs=None,
-):
-    """Gather session- and subject-level metadata and use it to create an NWBFile. If
-    there is no subject_to_nwb export function in the current namespace, subject_id will
-    be inferred from the set of primary attributes in the Subject table upstream of Session.
+) -> pynwb.NWBFile:
+    """Return subject and session metadata ass NWBFile object
 
-    Parameters
-    ----------
-    session_key: dict,
-        e.g.,
-        {
-            'subject': 'subject5',
-            'session_datetime': datetime.datetime(2020, 5, 12, 4, 13, 7),
-        }
-        Assumes session_datetime is in UTC time zone.
-    lab_key, project_key, protocol_key: dict, optional
-        Used to gather additional optional metadata.
-    additional_nwbfile_kwargs: dict, optional
-        Optionally overwrite or add fields to NWBFile.
+    Gather session- and subject-level metadata and use it to create an NWBFile. If there
+    is no subject_to_nwb export function in the current namespace, subject_id will be
+    inferred from the set of primary attributes in the Subject table upstream of
+    Session.
 
-    Returns
-    -------
-    pynwb.NWBFile
+    Example:
+        session_to_nwb(
+            session_key={'subject': 'subject5',
+                'session_datetime': datetime.datetime(2020, 5, 12, 4, 13, 7)},
+            lab_key={"lab": "LabA"}
+            )
 
-    mappings:
-        session.Session::KEY -> NWBFile.session_id
-        session.Session::session_datetime -> NWBFile.session_start_time
-        session.SessionNote::session_note -> NWBFile.session_description
-        session.SessionExperimenter::user -> NWBFile.experimenter
+    Element to NWB Mappings:
+        session.Session::KEY -> NWBFile.session_id  \n
+        session.Session::session_datetime -> NWBFile.session_start_time \n
+        session.SessionNote::session_note -> NWBFile.session_description \n
+        session.SessionExperimenter::user -> NWBFile.experimenter \n
+        subject.Subject::subject -> NWBFile.subject.subject_id \n
+        subject.Subject::sex -> NWBFile.subject.sex \n
+        lab.Lab::institution -> NWBFile.institution \n
+        lab.Lab::lab_name -> NWBFile.lab \n
+        lab.Protocol::protocol -> NWBFile.protocol \n
+        lab.Protocol::protocol_description -> NWBFile.notes \n
+        lab.Project::project_description -> NWBFile.experiment_description \n
+        lab.ProjectKeywords.keyword -> NWBFile.keywords \n
+        lab.ProjectPublication.publication -> NWBFile.related_publications \n
 
-        subject.Subject::subject -> NWBFile.subject.subject_id
-        subject.Subject::sex -> NWBFile.subject.sex
+    Args:
+        session_key (dict): Key for session.Session.
+            Assumes session_datetime is in UTC time zone.
+        lab_key (dict, optional): Key for lab.Lab. Defaults to None.
+        project_key (dict, optional): Key for lab.Project. Defaults to None.
+        protocol_key (dict, optional): Key for Lab.Protocol. Defaults to None.
+        additional_nwbfile_kwargs (dict, optional): Optionally overwrite or add fields
+            to NWBFile. Defaults to None.
 
-        lab.Lab::institution -> NWBFile.institution
-        lab.Lab::lab_name -> NWBFile.lab
-
-        lab.Protocol::protocol -> NWBFile.protocol
-        lab.Protocol::protocol_description -> NWBFile.notes
-
-        lab.Project::project_description -> NWBFile.experiment_description
-        lab.ProjectKeywords.keyword -> NWBFile.keywords
-        lab.ProjectPublication.publication -> NWBFile.related_publications
-
+    Returns:
+        pynwb.NWBFile: NWB file object
     """
 
     # ensure only one session key is entered
