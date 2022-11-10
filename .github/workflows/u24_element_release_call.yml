@@ -1,7 +1,7 @@
-name: u24_element_release_call_0.0.2
+name: u24_element_release_call
 on:
   workflow_run:
-    workflows: ["u24_element_tag_to_release_0.0.1"]
+    workflows: ["u24_element_tag_to_release"]
     types:
       - completed
 jobs:
