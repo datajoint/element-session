@@ -2,9 +2,10 @@
 
 Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) convention.
 
-## [0.1.3] - Unreleased
+## [0.1.3] - 2023-04-28
 
 + Add - mkdocs deployment, improved docstrings
++ Fix - `.ipynb` output in tutorials is not visible in dark mode.
 
 ## [0.1.2] - 2022-06-01
 
