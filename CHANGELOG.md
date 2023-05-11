@@ -2,6 +2,11 @@
 
 Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) convention.
 
+## [0.1.4] - 2023-05-11
+
++ Fix - `.ipynb` dark mode output for all notebooks.
++ Fix - Remove `GOOGLE_ANALYTICS_KEY` from `u24_element_release_call.yml`.
+
 ## [0.1.3] - 2023-04-28
 
 + Add - mkdocs deployment, improved docstrings
@@ -28,6 +33,7 @@ Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and
 + Add - GitHub Action release process
 + Add - `session` schema
 
+[0.1.4]: https://github.com/datajoint/element-session/releases/tag/0.1.4
 [0.1.3]: https://github.com/datajoint/element-session/releases/tag/0.1.3
 [0.1.2]: https://github.com/datajoint/element-session/releases/tag/0.1.2
 [0.1.1]: https://github.com/datajoint/element-session/compare/0.1.0b0...0.1.1
