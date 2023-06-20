@@ -1,3 +1,5 @@
+[![PyPI version](https://badge.fury.io/py/element-session.svg)](http://badge.fury.io/py/element-session)
+
 # DataJoint Element - Session
 
 DataJoint Element for Session Management. DataJoint Elements collectively standardize
