@@ -17,7 +17,7 @@
         <link rel="next" href="../session_with_id/">
       
       <link rel="icon" href="../../../assets/images/company-logo-blue.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.11">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.16">
     
     
       
@@ -25,10 +25,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.85bb2934.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.26e3688c.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a6bdf11c.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ecc896b0.min.css">
       
       
 
@@ -51,16 +51,6 @@
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-  
-
-
-  
-  
-
-
-  
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-  
 
     
     
@@ -775,7 +765,11 @@
           <td>
                 <code>str</code>
           </td>
-          <td><p>schema name on the database server</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>schema name on the database server</p>
+            </div>
+          </td>
           <td>
               <em>required</em>
           </td>
@@ -785,8 +779,12 @@
           <td>
                 <code>bool</code>
           </td>
-          <td><p>when True (default), create schema in the database if it
-                does not yet exist.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>when True (default), create schema in the database if it
+                does not yet exist.</p>
+            </div>
+          </td>
           <td>
                 <code>True</code>
           </td>
@@ -796,8 +794,12 @@
           <td>
                 <code>str</code>
           </td>
-          <td><p>when True (default), create schema tables in the database
-                 if they do not yet exist.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>when True (default), create schema tables in the database
+                 if they do not yet exist.</p>
+            </div>
+          </td>
           <td>
                 <code>True</code>
           </td>
@@ -807,7 +809,11 @@
           <td>
                 <code>str</code>
           </td>
-          <td><p>a module (or name) containing the required dependencies.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>a module (or name) containing the required dependencies.</p>
+            </div>
+          </td>
           <td>
                 <code>None</code>
           </td>
@@ -947,14 +953,22 @@ Experimenter: the experimenter(s) participating in a given session
           <td>
                 <code>foreign key</code>
           </td>
-          <td><p>Key for Subject table</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Key for Subject table</p>
+            </div>
+          </td>
         </tr>
         <tr>
           <td><code>session_datetime</code></td>
           <td>
                 <code>datetime</code>
           </td>
-          <td><p>date and time of the session</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>date and time of the session</p>
+            </div>
+          </td>
         </tr>
     </tbody>
   </table>
@@ -1069,28 +1083,44 @@ Experimenter: the experimenter(s) participating in a given session
           <td>
                 <code>foreign key</code>
           </td>
-          <td><p>Key for Session table</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Key for Session table</p>
+            </div>
+          </td>
         </tr>
         <tr>
           <td><code>attribute_name</code></td>
           <td>
                 <code> varchar(32) </code>
           </td>
-          <td><p>Name shared across instances of attribute</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Name shared across instances of attribute</p>
+            </div>
+          </td>
         </tr>
         <tr>
           <td><code>attribute_value</code></td>
           <td>
                 <code> varchar(2000), optional </code>
           </td>
-          <td><p>Attribute value</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Attribute value</p>
+            </div>
+          </td>
         </tr>
         <tr>
           <td><code>attribute_blob</code></td>
           <td>
                 <code>longblob</code>
           </td>
-          <td><p>Optional data store field</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Optional data store field</p>
+            </div>
+          </td>
         </tr>
     </tbody>
   </table>
@@ -1195,14 +1225,22 @@ Experimenter: the experimenter(s) participating in a given session
           <td>
                 <code>foreign key</code>
           </td>
-          <td><p>Key for Session table</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Key for Session table</p>
+            </div>
+          </td>
         </tr>
         <tr>
           <td><code>session_dir</code></td>
           <td>
                 <code> varchar(256) </code>
           </td>
-          <td><p>Path to the data directory for a session</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Path to the data directory for a session</p>
+            </div>
+          </td>
         </tr>
     </tbody>
   </table>
@@ -1292,14 +1330,22 @@ Experimenter: the experimenter(s) participating in a given session
           <td>
                 <code>foreign key</code>
           </td>
-          <td><p>Key for Session table</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Key for Session table</p>
+            </div>
+          </td>
         </tr>
         <tr>
           <td><code>Experimenter</code></td>
           <td>
                 <code>foreign key</code>
           </td>
-          <td><p>Key for Experimenter table</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Key for Experimenter table</p>
+            </div>
+          </td>
         </tr>
     </tbody>
   </table>
@@ -1389,14 +1435,22 @@ Experimenter: the experimenter(s) participating in a given session
           <td>
                 <code>foreign key</code>
           </td>
-          <td><p>Key for Session table</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Key for Session table</p>
+            </div>
+          </td>
         </tr>
         <tr>
           <td><code>session_note</code></td>
           <td>
                 <code> varchar(1024) </code>
           </td>
-          <td><p>Additional notes</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Additional notes</p>
+            </div>
+          </td>
         </tr>
     </tbody>
   </table>
@@ -1486,14 +1540,22 @@ Experimenter: the experimenter(s) participating in a given session
           <td>
                 <code>foreign key</code>
           </td>
-          <td><p>Key for Project table</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Key for Project table</p>
+            </div>
+          </td>
         </tr>
         <tr>
           <td><code>Session</code></td>
           <td>
                 <code>foreign key</code>
           </td>
-          <td><p>Key for Session table</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Key for Session table</p>
+            </div>
+          </td>
         </tr>
     </tbody>
   </table>
@@ -1552,8 +1614,6 @@ Experimenter: the experimenter(s) participating in a given session
 
 </div>
 
-
-  
 
 
 
@@ -1674,9 +1734,11 @@ Experimenter: the experimenter(s) participating in a given session
     <script id="__config" type="application/json">{"base": "../../..", "features": ["toc.integrate", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.fac441b0.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.a51614de.min.js"></script>
       
-        <script src="https://js-na1.hs-scripts.com/23133402.js"></script>
+        
+          <script src="https://js-na1.hs-scripts.com/23133402.js"></script>
+        
       
     
   </body>
