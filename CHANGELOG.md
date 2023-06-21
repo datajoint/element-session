@@ -6,6 +6,7 @@ Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and
 
 + Update - GitHub Actions workflows
 + Fix - Remove Google Analytics key
++ Add - GitHub Issue Templates
 
 ## [0.1.4] - 2023-05-11
 
