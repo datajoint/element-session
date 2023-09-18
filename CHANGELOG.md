@@ -2,6 +2,12 @@
 
 Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) convention.
 
+## [0.1.6] - 2023-09-18
+
++ Update - NWB export checks for activated session schema to allow use of both
+  `session_with_id` and `session_with_datetime`
+
+
 ## [0.1.5] - 2023-06-20
 
 + Update - GitHub Actions workflows
@@ -39,6 +45,7 @@ Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and
 + Add - GitHub Action release process
 + Add - `session` schema
 
+[0.1.6]: https://github.com/datajoint/element-session/releases/tag/0.1.6
 [0.1.5]: https://github.com/datajoint/element-session/releases/tag/0.1.5
 [0.1.4]: https://github.com/datajoint/element-session/releases/tag/0.1.4
 [0.1.3]: https://github.com/datajoint/element-session/releases/tag/0.1.3
