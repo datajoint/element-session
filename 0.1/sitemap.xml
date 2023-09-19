@@ -2,72 +2,77 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>http://localhost/docs/elements/element-session/0.1/</loc>
-         <lastmod>2023-06-21</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-session/0.1/changelog/</loc>
-         <lastmod>2023-06-21</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-session/0.1/citation/</loc>
-         <lastmod>2023-06-21</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-session/0.1/concepts/</loc>
-         <lastmod>2023-06-21</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-session/0.1/tutorials/</loc>
-         <lastmod>2023-06-21</lastmod>
+         <lastmod>2023-09-19</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://localhost/docs/elements/element-session/0.1/api/navigation/</loc>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-session/0.1/api/element_session/session_with_datetime/</loc>
-         <lastmod>2023-06-21</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-session/0.1/api/element_session/session_with_id/</loc>
-         <lastmod>2023-06-21</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-session/0.1/api/element_session/version/</loc>
-         <lastmod>2023-06-21</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-session/0.1/api/element_session/export/nwb/</loc>
-         <lastmod>2023-06-21</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-session/0.1/api/workflow_session/export/</loc>
-         <lastmod>2023-06-21</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-session/0.1/api/workflow_session/ingest/</loc>
-         <lastmod>2023-06-21</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-session/0.1/api/workflow_session/paths/</loc>
-         <lastmod>2023-06-21</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-session/0.1/api/workflow_session/pipeline/</loc>
-         <lastmod>2023-06-21</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>http://localhost/docs/elements/element-session/0.1/api/workflow_session/version/</loc>
-         <lastmod>2023-06-21</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
