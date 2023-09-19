@@ -5,17 +5,12 @@ import datajoint as dj
 
 from .. import session_with_id, session_with_datetime
 
-if (
-    not session_with_id.schema.is_activated()
-    and not session_with_datetime.schema.is_activated()
-):
+if session_with_datetime.schema.is_activated():
+    session = session_with_datetime
+elif session_with_id.schema.is_activated():
+    session = session_with_id
+else:
     raise dj.DataJointError("Session schema has not been activated.")
-
-for session_module in [session_with_datetime, session_with_id]:
-    if session_module.schema.is_activated():
-        session = session_module
-    else:
-        continue
 
 
 def session_to_nwb(
