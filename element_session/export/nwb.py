@@ -1,8 +1,16 @@
 import datetime
 from uuid import uuid4
 import pynwb
+import datajoint as dj
 
-from .. import session
+from .. import session_with_id, session_with_datetime
+
+if session_with_datetime.schema.is_activated():
+    session = session_with_datetime
+elif session_with_id.schema.is_activated():
+    session = session_with_id
+else:
+    raise dj.DataJointError("Session schema has not been activated.")
 
 
 def session_to_nwb(
@@ -12,7 +20,7 @@ def session_to_nwb(
     protocol_key: dict = None,
     additional_nwbfile_kwargs=None,
 ) -> pynwb.NWBFile:
-    """Return subject and session metadata ass NWBFile object
+    """Return subject and session metadata as NWBFile object
 
     Gather session- and subject-level metadata and use it to create an NWBFile. If there
     is no subject_to_nwb export function in the current namespace, subject_id will be
@@ -58,7 +66,7 @@ def session_to_nwb(
     session_key = (session.Session & session_key).fetch1("KEY")
 
     session_identifier = {
-        k: v.isoformat() if isinstance(v, datetime.datetime) else v
+        k: v.isoformat() if isinstance(v, datetime.datetime) else str(v)
         for k, v in session_key.items()
     }
 
