@@ -54,14 +54,14 @@ class Session(dj.Manual):
     Attributes:
         Subject (foreign key): Key for Subject table
         session_id (int): Unique numeric session ID
-        session_datetime (datetime): date and time of the session
+        session_datetime (datetime, optional): date and time of the session
     """
 
     definition = """
     -> Subject
     session_id: int
     ---
-    session_datetime: datetime
+    session_datetime=null: datetime
     """
 
     class Attribute(dj.Part):
