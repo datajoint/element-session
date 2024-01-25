@@ -2,9 +2,14 @@
 
 Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) convention.
 
+## [0.2.0] - 2024-01-25
+
++ Add - `session_id` attribute to `Session` in `session_with_datetime.py`
++ Update - Remove PyPI release from GitHub Actions workflow
+
 ## [0.1.7] - 2023-11-30
 
-+ Allow null value for `session_datetime` in `session_with_id`
++ Update - Allow null value for `session_datetime` in `session_with_id`
 
 ## [0.1.6] - 2023-09-18
 
@@ -48,6 +53,7 @@ Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and
 + Add - GitHub Action release process
 + Add - `session` schema
 
+[0.2.0]: https://github.com/datajoint/element-session/releases/tag/0.2.0
 [0.1.7]: https://github.com/datajoint/element-session/releases/tag/0.1.7
 [0.1.6]: https://github.com/datajoint/element-session/releases/tag/0.1.6
 [0.1.5]: https://github.com/datajoint/element-session/releases/tag/0.1.5

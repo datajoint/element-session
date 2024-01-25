@@ -53,13 +53,16 @@ class Session(dj.Manual):
     """Central Session table
 
     Attributes:
-        Subject (foreign key): Key for Subject table
+        Subject (foreign key): Primary key from Subject table
         session_datetime (datetime): date and time of the session
+        session_id (int, optional): numerical session identifier
     """
 
     definition = """
     -> Subject
     session_datetime: datetime
+    ---
+    session_id=null: int
     """
 
     class Attribute(dj.Part):
