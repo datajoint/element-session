@@ -1,7 +1,7 @@
 # ---------------------- PROJECT SPECIFIC ---------------------------
 
 site_name: DataJoint Documentation
-site_url: http://localhost/docs/elements/element-session
+site_url: https://docs.datajoint.com/elements/element-session/
 repo_url: https://github.com/datajoint/element-session
 repo_name: datajoint/element-session
 nav:
