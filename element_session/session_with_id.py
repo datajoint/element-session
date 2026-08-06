@@ -2,7 +2,7 @@ import datajoint as dj
 import importlib
 import inspect
 
-schema = dj.schema()
+schema = dj.Schema()
 _linking_module = None
 
 
