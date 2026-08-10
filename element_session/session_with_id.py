@@ -59,7 +59,7 @@ class Session(dj.Manual):
 
     definition = """
     -> Subject
-    session_id: int
+    session_id: int32
     ---
     session_datetime=null: datetime
     """

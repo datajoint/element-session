@@ -62,7 +62,7 @@ class Session(dj.Manual):
     -> Subject
     session_datetime: datetime
     ---
-    session_id=null: int
+    session_id=null: int32
     """
 
     class Attribute(dj.Part):
