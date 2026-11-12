@@ -2,7 +2,7 @@ import datajoint as dj
 import importlib
 import inspect
 
-schema = dj.schema()
+schema = dj.Schema()
 _linking_module = None
 
 
@@ -59,7 +59,7 @@ class Session(dj.Manual):
 
     definition = """
     -> Subject
-    session_id: int
+    session_id: int32
     ---
     session_datetime=null: datetime
     """
@@ -79,7 +79,7 @@ class Session(dj.Manual):
         attribute_name: varchar(32)
         ---
         attribute_value='': varchar(2000)
-        attribute_blob=null: longblob
+        attribute_blob=null: <blob>
         """
 
 
